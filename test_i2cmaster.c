@@ -13,7 +13,8 @@
 
 #include <i2cmaster.h>
 #define Dev24C02  0x9e      // device address, see datasheet
-
+#define zero 0b10000001     // We will dislay a 0 if temperature is below limit
+#define one 0b11010111      // We will display a 1 if temperature is above limit
 
 int main(void)
 {
@@ -22,10 +23,11 @@ float temp;
 char *string;
 char *string2;
 
-
+ DDRC=0xFF; //7led segment display
 uart_init(0);
 uart_printstrn(0, "temperature ");
 i2c_init(); 
+
 
 
   while (1){
@@ -37,7 +39,14 @@ i2c_init();
 
     ret=i2c_readNak();
     
+    if (ret>=30){
+      PORTC=one;
+    }
 
+    else {
+      PORTC=zero;
+
+    }
     string = dtostrf(ret, 2, 0, string);
     
 
