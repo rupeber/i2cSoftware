@@ -3,19 +3,13 @@
 # make          = build software
 # make clean    = Clean out built project files
 # make program  = Download the hex file to the device, using avrdude.
-#                 Please customize the avrdude settings below first!
-#
-
+#                 
 
 # MCU name
 MCU = atmega128
 
 
 # Processor frequency.
-#     This will define a symbol, F_CPU, in all source code files equal to the 
-#     processor frequency. You can then use this symbol in your source code to 
-#     calculate timings. Do NOT tack on a 'UL' at the end, this will be done
-#     automatically to create a 32-bit value in your source code.
 F_CPU = 11059200
 
 
@@ -28,12 +22,6 @@ SRC = $(TARGET).c uart.c
 
 
 # List Assembler source files here.
-#     Make them always end in a capital .S.  Files ending in a lowercase .s
-#     will not be considered source files but generated files (assembler
-#     output from the compiler), and will be deleted upon "make clean"!
-#     Even though the DOS/Win* filesystem matches both .s and .S the same,
-#     it will preserve the spelling of the filenames, and gcc itself does
-#     care about how the name is spelled on its command-line.
 ASRC = i2cmaster.S
 
 
@@ -151,7 +139,7 @@ AVRDUDE_PROGRAMMER = stk500v2
 AVRDUDE_PORT = avrdoper
 
 AVRDUDE_WRITE_FLASH = -U flash:w:$(TARGET).hex
-#AVRDUDE_WRITE_EEPROM = -U eeprom:w:$(TARGET).eep
+
 
 # Uncomment the following if you do /not/ wish a verification to be performed after programming the device.
 #AVRDUDE_NO_VERIFY = -V
@@ -210,7 +198,6 @@ WINSHELL = cmd
 
 # Define Messages
 MSG_FLASH = Creating load file for Flash:
-MSG_EEPROM = Creating load file for EEPROM:
 MSG_EXTENDED_LISTING = Creating Extended Listing:
 MSG_SYMBOL_TABLE = Creating Symbol Table:
 MSG_LINKING = Linking:
@@ -238,7 +225,7 @@ ALL_ASFLAGS = -mmcu=$(MCU) -I. $(ASFLAGS)
 
 
 # Default target.
-all: gccversion $(TARGET).elf $(TARGET).hex $(TARGET).eep $(TARGET).lss $(TARGET).sym size
+all: gccversion $(TARGET).elf $(TARGET).hex $(TARGET).lss $(TARGET).sym size
 
 
 # Display compiler version information.
@@ -252,9 +239,6 @@ gccversion :
 	@echo $(MSG_FLASH) $@
 	$(OBJCOPY) -O $(FORMAT) -R .eeprom $< $@
 
-%.eep: %.elf
-	@echo $(MSG_EEPROM) $@
-	-$(OBJCOPY) -j .eeprom --set-section-flags=.eeprom="alloc,load" --change-section-lma .eeprom=0 -O $(FORMAT) $< $@ 
 
 # Create extended listing file from ELF output file.
 %.lss: %.elf
@@ -298,8 +282,8 @@ size: ${TARGET}.elf
 
 
 # Program the device.  
-program: $(TARGET).hex $(TARGET).eep
-	$(AVRDUDE) $(AVRDUDE_FLAGS) $(AVRDUDE_WRITE_FLASH) $(AVRDUDE_WRITE_EEPROM)
+program: $(TARGET).hex
+	$(AVRDUDE) $(AVRDUDE_FLAGS) $(AVRDUDE_WRITE_FLASH)
 
 
 # Delete all generated files.

@@ -1,5 +1,3 @@
-
-
 ; DESCRIPTION
 ; 	Basic routines for communicating with I2C slave devices. This
 ;	"single" master implementation is limited to one bus master on the
@@ -25,7 +23,6 @@
 #undef SCL_DDR
 
 
-;******----- Adapt these SCA and SCL port and pin definition to your target !!
 ;
 #define SDA             7           // SDA Port D  
 #define SCL             6           // SCL Port D
