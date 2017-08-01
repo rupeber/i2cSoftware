@@ -1,14 +1,6 @@
 #ifndef _I2CMASTER_H
 #define _I2CMASTER_H
-/************************************************************************* 
-* Title:    C include file for the I2C master interface 
-*           (i2cmaster.S or twimaster.c)
-* Author:   Peter Fleury <pfleury@gmx.ch>
-* File:     $Id: i2cmaster.h,v 1.12 2015/09/16 09:27:58 peter Exp $
-* Software: AVR-GCC 4.x
-* Target:   any AVR device
-* Usage:    see Doxygen manual
-**************************************************************************/
+
 
 /**
  @file

@@ -25,17 +25,17 @@ char *string2;
 
 uart_init(0);
 uart_printstrn(0, "temperature ");
+i2c_init(); 
 
 
   while (1){
     ret=0;
 
-    i2c_init(); 
                         // initialize I2C library
-    // 
-    i2c_start(Dev24C02+1);  // set device address and write mode
+     
+    i2c_start(Dev24C02+1);  // set device address and read mode
 
-    ret=i2c_readAck();
+    ret=i2c_readNak();
     
 
     string = dtostrf(ret, 2, 0, string);
@@ -46,8 +46,7 @@ uart_printstrn(0, "temperature ");
       uart_printstrn(0, string2);
     
 
-    i2c_stop();
-    _delay_ms(2000);
+    _delay_ms(1000);
     
      }
     

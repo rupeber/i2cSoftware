@@ -1,22 +1,10 @@
 # ----------------------------------------------------------------------------
 # Makefile to compile and link the I2C Master library and test program
-# Author: Peter Fleury
-# File:   $Id: makefile.i2cmaster,v 1.3 2015/09/16 11:30:30 peter Exp $
-#
-# Adjust MCU and F_CPU below to your AVR target 
-#----------------------------------------------------------------------------
-# usage:
-#
 # make          = build software
 # make clean    = Clean out built project files
 # make program  = Download the hex file to the device, using avrdude.
 #                 Please customize the avrdude settings below first!
 #
-# make filename.s = Just compile filename.c into the assembler code only.
-# make filename.i = Create a preprocessed source file 
-#
-# To rebuild project do "make clean" then "make"
-#----------------------------------------------------------------------------
 
 
 # MCU name

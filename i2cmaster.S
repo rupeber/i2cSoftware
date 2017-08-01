@@ -1,27 +1,16 @@
-;*************************************************************************
-; Title	:    I2C (Single) Master Implementation
-; Author:    Peter Fleury <pfleury@gmx.ch>
-;            based on Atmel Appl. Note AVR300
-; File:      $Id: i2cmaster.S,v 1.13 2015/09/16 11:21:00 peter Exp $
-; Software:  AVR-GCC 4.x
-; Target:    any AVR device
-;
+
+
 ; DESCRIPTION
 ; 	Basic routines for communicating with I2C slave devices. This
 ;	"single" master implementation is limited to one bus master on the
 ;	I2C bus. 
 ;  
-;       Based on the Atmel Application Note AVR300, corrected and adapted 
-;       to GNU assembler and AVR-GCC C call interface
-;       Replaced the incorrect quarter period delays found in AVR300 with 
-;       half period delays. 
 ;
 ; USAGE
 ;	These routines can be called from C, refere to file i2cmaster.h.
 ;       See example test_i2cmaster.c 
 ; 	Adapt the SCL and SDA port and pin definitions and eventually 
 ;	the delay routine to your target !
-; 	Use 4.7k pull-up resistor on the SDA and SCL pin.
 ;
 ; NOTES
 ;	The I2C routines can be called either from non-interrupt or
